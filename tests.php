@@ -20,7 +20,7 @@ function getClient()
     return new AlgoDocs('YOUR_SECRET_API_KEY');
 }
 
-function test_authenticate($algodocs_client)
+function test_authenticate()
 {
     $algodocs_client = getClient();
     //test authentication by getting credentials...
