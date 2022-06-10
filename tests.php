@@ -4,7 +4,7 @@ require('./vendor/autoload.php');
 
 use AlgoDocs\AlgoDocs;
 
-test_authenticate($algodocs_client);
+test_authenticate();
 //test_getExtractors();
 //test_getFolders();
 //test_uploadDocumentLocal();
