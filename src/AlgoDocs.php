@@ -53,10 +53,11 @@ class AlgoDocs
      * @param $extractor_id
      * @param $folder_id
      * @param $file_path
+     * @param $filename
      * @return bool|mixed|\Psr\Http\Message\ResponseInterface|string
      * @throws AlgoDocsApiException
      */
-    public function uploadDocumentLocal($extractor_id, $folder_id, $file_path)
+    public function uploadDocumentLocal($extractor_id, $folder_id, $file_path, $filename = null)
     {
         if (!file_exists($file_path)) {
             throw new AlgoDocsApiException("No such file.");
@@ -66,7 +67,7 @@ class AlgoDocs
             throw new AlgoDocsApiException("Passed a directory, expected file.");
         }
 
-        return $this->uploadDocumentByContents($extractor_id, $folder_id, fopen($file_path, 'r'), basename($file_path));
+        return $this->uploadDocumentByContents($extractor_id, $folder_id, fopen($file_path, 'r'), $filename ?? basename($file_path));
     }
 
     /**
@@ -135,7 +136,7 @@ class AlgoDocs
 
         return $response;
     }
-    
+
     /**
      * retrieves extracted data of a single document by document id
      * @api
@@ -154,7 +155,7 @@ class AlgoDocs
 
     /**
      * retrieves extracted data of multiple documents by extractor id
-     * 
+     *
      * @param $extractor_id
      * @param array $options
      * options contains the keys:
@@ -167,7 +168,7 @@ class AlgoDocs
         $folder_id = (isset($options['folder_id'])) ? $options['folder_id'] : null;
         $limit = (isset($options['limit'])) ? $options['limit'] : 100; //max is 10000...
         $date = (isset($options['date'])) ? $options['date']->format('c') : null;
-        
+
         $request = new AlgoDocsApiRequest(self::API_BASE_URL, $this->apiKey);
         $endpoint = 'extracted_data/' . $extractor_id;
 
