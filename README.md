@@ -8,7 +8,7 @@ Please visit [AlgoDocs API Documentation](https://api.algodocs.com/) for a detai
 
 ## Installation
 
-This library requires PHP 5.5 or above.
+This library requires PHP 7.2.5 or above (guzzle 7 or 8).
 
 **Using Composer**:
 

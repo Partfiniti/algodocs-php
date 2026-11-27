@@ -41,7 +41,6 @@ class AlgoDocsApiRequest
             'headers' => [
                 'x-api-key' => $apiKey
             ],
-            'verify' => false // remove this in production...
         ]);
 
         return $this;
